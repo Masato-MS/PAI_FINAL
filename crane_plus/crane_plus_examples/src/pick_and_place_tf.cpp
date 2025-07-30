@@ -135,7 +135,7 @@ private:
     control_gripper(GRIPPER_CLOSE);
     control_arm(0.0, 0.0, 0.17, 0, 90, 0);
 
-    // ↓↓↓ 積み上げる処理部分 ↓↓↓
+    // 積み上げる処理
     double drop_z = 0.05 + 0.05 * drop_count_;
     control_arm(0.0, -0.15, drop_z, 0, 90, -90);
     control_gripper(GRIPPER_OPEN);
@@ -143,7 +143,6 @@ private:
     control_arm(0.0, 0.0, 0.17, 0, 0, 0);
     control_gripper(GRIPPER_DEFAULT);
     drop_count_++;
-    // ↑↑↑ 積み上げる処理ここまで ↑↑↑
   }
 
   void control_gripper(const double angle)
@@ -177,7 +176,7 @@ private:
   rclcpp::TimerBase::SharedPtr timer_{nullptr};
   tf2::Stamped<tf2::Transform> tf_past_;
 
-  // 追加: 積み上げ回数カウント
+  // 積み上げ回数カウント
   int drop_count_ = 0;
 };
 
